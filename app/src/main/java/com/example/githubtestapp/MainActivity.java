@@ -8,7 +8,7 @@ import com.example.githubtestapp.modules.NavModule;
 
 public class MainActivity extends AppCompatActivity {
 
-   static public AppComponent appComponent;
+    public AppComponent appComponent;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

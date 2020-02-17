@@ -4,7 +4,6 @@ import android.app.Application;
 
 import com.example.githubtestapp.remote.GitHubApi;
 
-import io.reactivex.schedulers.Schedulers;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -17,10 +16,10 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        Retrofit retrofit = new Retrofit
-                .Builder()
+
+        Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(GITHUB_BASE_URL)
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.createWithScheduler(Schedulers.io()))
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         gitHubApi = retrofit.create(GitHubApi.class);

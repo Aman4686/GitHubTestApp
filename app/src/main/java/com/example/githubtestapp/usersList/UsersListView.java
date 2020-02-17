@@ -38,7 +38,6 @@ public class UsersListView extends BaseView {
         context = viewLayout.getContext();
         initIds();
 
-
         btnRefresh.setOnClickListener((v)->{
             String sinceStr = etSince.getText().toString();
             int since = Integer.parseInt(sinceStr);
