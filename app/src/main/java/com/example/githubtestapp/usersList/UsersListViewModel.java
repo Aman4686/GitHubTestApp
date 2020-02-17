@@ -25,9 +25,15 @@ public class UsersListViewModel extends ViewModel {
         this.gitHubNavigator = gitHubNavigator;
         this.gitHubRepo = gitHubRepo;
         this.userListLiveData = new MutableLiveData<>();
-        refreshUserList(0);
+        refreshUserList();
 
 
+    }
+
+    public void refreshUserList(){
+        disposable = gitHubRepo.getListOfUser(0)
+                .subscribe(userList -> userListLiveData.setValue(userList));
+        DisposableManager.add(disposable);
     }
 
     public void refreshUserList(int since){
@@ -35,7 +41,6 @@ public class UsersListViewModel extends ViewModel {
                 .subscribe(userList -> userListLiveData.setValue(userList));
         DisposableManager.add(disposable);
     }
-
 
 
     public void navigateToUserInfo(String login, String imageUrl){

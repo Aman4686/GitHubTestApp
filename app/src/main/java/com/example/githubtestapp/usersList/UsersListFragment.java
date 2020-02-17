@@ -9,34 +9,28 @@ import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-
-import com.example.githubtestapp.ActivityCallBack;
-import com.example.githubtestapp.MainActivity;
+import com.example.githubtestapp.basic.BaseFragment;
 import com.example.githubtestapp.common.DisposableManager;
 
 import javax.inject.Inject;
 
-public class UsersListFragment extends Fragment {
+public class UsersListFragment extends BaseFragment {
 
     @Inject
     UsersListViewModel model;
 
     private UsersListComponent usersListComponent;
-    private ActivityCallBack activityCallBack;
 
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        Activity activity = getActivity();
-        if(activity instanceof ActivityCallBack)
-            activityCallBack = (ActivityCallBack)activity;
+
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       usersListComponent = activityCallBack.getActivity().getAppComponent().createUsersComponent();
+       usersListComponent = getMainActivity().getAppComponent().createUsersComponent();
        usersListComponent.injectUsersFragment(this);
     }
 

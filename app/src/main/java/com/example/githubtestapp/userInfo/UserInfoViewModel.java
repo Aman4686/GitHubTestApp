@@ -1,6 +1,5 @@
 package com.example.githubtestapp.userInfo;
 
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -36,10 +35,8 @@ public class UserInfoViewModel extends ViewModel {
     public void initUserInfoLiveData(String login , String imageUrl){
         Disposable disposable = gitHubRepo.getUserRepos(login)
                 .subscribe((userReposPojo -> {
-                    Log.d("MyLog", userReposPojo.size() + "");
                     UserInfo userInfo = new UserInfo(login , imageUrl , userReposPojo);
                     userInfoLiveData.postValue(userInfo);
-
                 }));
         DisposableManager.add(disposable);
     }

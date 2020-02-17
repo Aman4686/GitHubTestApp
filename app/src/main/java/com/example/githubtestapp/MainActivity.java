@@ -6,7 +6,7 @@ import android.os.Bundle;
 
 import com.example.githubtestapp.modules.NavModule;
 
-public class MainActivity extends AppCompatActivity implements ActivityCallBack {
+public class MainActivity extends AppCompatActivity {
 
    static public AppComponent appComponent;
 
@@ -25,10 +25,5 @@ public class MainActivity extends AppCompatActivity implements ActivityCallBack 
         appComponent = DaggerAppComponent.builder()
                 .navModule(new NavModule(this))
                 .build();
-    }
-
-    @Override
-    public MainActivity getActivity() {
-        return this;
     }
 }
